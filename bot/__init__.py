@@ -63,7 +63,6 @@ if os.cpu_count() < 4:
 
 
 def ask_(db: Redis):
-    
     import sys 
     
     if "--newdb" in sys.argv:
