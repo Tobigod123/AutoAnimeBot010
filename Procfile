@@ -1,1 +1,1 @@
-worker: python3 -m bot._main_.py
+worker: python3 -m bot.__main__.py
