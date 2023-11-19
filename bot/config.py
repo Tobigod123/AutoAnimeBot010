@@ -19,9 +19,9 @@ from decouple import config
 class Var:
     # Telegram Credentials
 
-    API_ID = config("API_ID", default=6, cast=int)
-    API_HASH = config("API_HASH", default="eb06d4abfb49dc3eeb1aeb98ae0f581e")
-    BOT_TOKEN = config("BOT_TOKEN", default=None)
+    API_ID = config("API_ID", default=3847632, cast=int)
+    API_HASH = config("API_HASH", default="1a9708f807ddd06b10337f2091c67657")
+    BOT_TOKEN = config("BOT_TOKEN", default="6735110948:AAE3KjdAz52oqW35kXlp0yk-8BFQW6K9g4A")
 
     # Database Credentials
 
@@ -30,17 +30,17 @@ class Var:
 
     # Channels Ids
 
-    BACKUP_CHANNEL = config("BACKUP_CHANNEL", default=0, cast=int)
-    MAIN_CHANNEL = config("MAIN_CHANNEL", cast=int)
-    LOG_CHANNEL = config("LOG_CHANNEL", default=0, cast=int)
-    CLOUD_CHANNEL = config("CLOUD_CHANNEL", cast=int)
-    OWNER = config("OWNER", default=0, cast=int)
+    BACKUP_CHANNEL = config("BACKUP_CHANNEL", default=-1002108819224, cast=int)
+    MAIN_CHANNEL = config("MAIN_CHANNEL", default=-1001956463589, cast=int)
+    LOG_CHANNEL = config("LOG_CHANNEL", default=-1002108819224, cast=int)
+    CLOUD_CHANNEL = config("CLOUD_CHANNEL", default=-1002108819224, cast=int)
+    OWNER = config("OWNER", default=6748415360, cast=int)
 
     # Other Configs
 
     THUMB = config(
-        "THUMBNAIL", default="https://graph.org/file/37d9d0657d51e01a71f26.jpg"
+        "THUMBNAIL", default="https://telegra.ph/file/6c477e9ac15d25f09ff99.jpg"
     )
     FFMPEG = config("FFMPEG", default="ffmpeg")
-    SEND_SCHEDULE = config("SEND_SCHEDULE", default=False, cast=bool)
+    SEND_SCHEDULE = config("SEND_SCHEDULE", default=True, cast=bool)
     RESTART_EVERDAY = config("RESTART_EVERDAY", default=True, cast=bool)
