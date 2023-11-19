@@ -71,13 +71,13 @@ def ask_(db: Redis):
         db.flushall()
         LOGS.info("Successfully Flushed The Database!!!")
 
-
-
 def loader(mem: dict, db: Redis, logger):
-    for key in db.keys():
-        mem.update({key: eval(db.get(key) or "[]")})
-    logger.info(f"Succesfully Sync Database!!!")
-
+    try:
+        for key in db.keys():
+            mem.update({key: eval(db.get(key) or "[]")})
+        logger.info("Successfully Synced Database!!!")
+    except Exception as e:
+        logger.error(f"Error in loader: {e}")
 
 if not os.path.exists("thumb.jpg"):
     os.system(f"wget {Var.THUMB} -O thumb.jpg")
