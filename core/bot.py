@@ -16,7 +16,6 @@
 # if you are using this following code then don't forgot to give proper
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
 # little bit inspired from pyUltroid.BaseClient
-
 import sys
 from logging import Logger
 
@@ -110,55 +109,52 @@ class Bot(TelegramClient):
         return post
 
     async def upload_poster(self, file, caption):
-    # Upload the poster
+        # Upload the poster
         post = await self.send_file(
-        Var.MAIN_CHANNEL,
-        file=file,
-        caption=caption,
-    )
-
-    # Try to get message ID (assuming bot has admin privileges)
-    try:
-        async def get_updates():
-            updates = await self.bot.get_updates(allowed_updates=["message"])
-            message_id = updates[-1].message.message_id
-
-        # Construct temporary link (usable for   channels with usernames)
-            post_link = ""
-        if hasattr(Var, 'MAIN_CHANNEL_USERNAME'):
-            channel_username = Var.MAIN_CHANNEL_USERNAME
-            post_link = f"https://t.me/c/2140884022/{message_id}"
-
-            other_channel_caption = f"{caption_main}"
-                return 
-        # Send the poster to the other channel with caption and button
-  
-        try:
-            await self.bot.send_photo(
-                chat_id=Var.MAIN_ONGOING,
-                photo=post.photo[-1].file_id,  # Use the highest quality photo
-                caption=other_channel_caption,
-                reply_markup=self.get_download_button(post_link),
-            )
-            print("Successfully sent poster to other channel.")
-        except Exception as e:
-            print(f"Error sending poster to other channel: {e}")
-
-    except Exception as e:
-        print(f"Error retrieving message ID or sending to other channel: {e}")
-# No need to return the post object
-
-# Function to create the download button (replace with your library's implementation)
-def get_download_button(self, link):
-    if link:  # Only create button if there's a link
-        return InlineKeyboardMarkup.from_button(
-            InlineKeyboardButton(text="Click here to download", url=post_link)
+            Var.MAIN_CHANNEL,
+            file=file,
+            caption=caption,
         )
-    else:
-              return
 
+        # Try to get message ID (assuming bot has admin privileges)
+        try:
+            async def get_updates():
+                updates = await self.bot.get_updates(allowed_updates=["message"])
+                message_id = updates[-1].message.message_id
 
+                # Construct temporary link (usable for channels with usernames)
+                post_link = ""
+                if hasattr(Var, 'MAIN_CHANNEL_USERNAME'):
+                    channel_username = Var.MAIN_CHANNEL_USERNAME
+                    post_link = f"https://t.me/c/2140884022/{message_id}"
 
+                    other_channel_caption = f"{caption_main}"
+                    return
+
+                # Send the poster to the other channel with caption and button
+                try:
+                    await self.bot.send_photo(
+                        chat_id=Var.MAIN_ONGOING,
+                        photo=post.photo[-1].file_id,  # Use the highest quality photo
+                        caption=other_channel_caption,
+                        reply_markup=self.get_download_button(post_link),
+                    )
+                    print("Successfully sent poster to other channel.")
+                except Exception as e:
+                    print(f"Error sending poster to other channel: {e}")
+
+        except Exception as e:
+            print(f"Error retrieving message ID or sending to other channel: {e}")
+        # No need to return the post object
+
+    # Function to create the download button (replace with your library's implementation)
+    def get_download_button(self, link):
+        if link:  # Only create button if there's a link
+            return InlineKeyboardMarkup.from_button(
+                InlineKeyboardButton(text="Click here to download", url=post_link)
+            )
+        else:
+            return
 
     async def is_joined(self, channel_id, user_id):
         try:
